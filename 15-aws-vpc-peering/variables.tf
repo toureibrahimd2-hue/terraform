@@ -28,7 +28,7 @@ variable "subnet_cidr"{
 variable "instance_type" {
   description = "The type of the instance"
   type        = string
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 variable "primary_key_name" {

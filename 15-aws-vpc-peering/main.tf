@@ -22,8 +22,10 @@ resource "aws_vpc" "secondary" {
 resource "aws_subnet" "primary" {
   provider = aws.primary
   vpc_id = aws_vpc.primary.id
-  cidr_block = var.vpc_cidr[0]
+  cidr_block = var.subnet_cidr[0]
   availability_zone = data.aws_availability_zones.primary.names[0]
+    map_public_ip_on_launch = true
+
   tags = merge(local.tags, {
     Name = "primary_subnet"
   })
@@ -32,8 +34,10 @@ resource "aws_subnet" "primary" {
 resource "aws_subnet" "secondary" {
   provider = aws.secondary
   vpc_id = aws_vpc.secondary.id
-  cidr_block = var.vpc_cidr[1]
+  cidr_block = var.subnet_cidr[1]
   availability_zone = data.aws_availability_zones.secondary.names[0]
+    map_public_ip_on_launch = true
+
   tags = merge(local.tags, {
     Name = "secondary_subnet"
   })
@@ -239,6 +243,7 @@ resource "aws_instance" "primary" {
   subnet_id = aws_subnet.primary.id
   vpc_security_group_ids = [aws_security_group.primary.id]
   user_data= local.primary_user_data
+  associate_public_ip_address = true  
   depends_on = [aws_vpc_peering_connection_accepter.vpc_peering_connection_accepter]
 
   tags = merge(local.tags, {
@@ -255,6 +260,7 @@ resource "aws_instance" "secondary" {
   subnet_id = aws_subnet.secondary.id
   vpc_security_group_ids = [aws_security_group.secondary.id]
   user_data= local.secondary_user_data
+  associate_public_ip_address = true  
   depends_on = [aws_vpc_peering_connection_accepter.vpc_peering_connection_accepter]
     
 
