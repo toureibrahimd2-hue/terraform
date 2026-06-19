@@ -2,12 +2,12 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 
-data "availability_zones" "primary" {
+data "aws_availability_zones" "primary" {
   provider = aws.primary
   state = "available"
 }
 
-data "availability_zones" "secondary" {
+data "aws_availability_zones" "secondary" {
   provider = aws.secondary
   state = "available"
 }
