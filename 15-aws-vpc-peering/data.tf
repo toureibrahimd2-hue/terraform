@@ -2,34 +2,65 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 
-data "aws_iam_policy_document" "allow_cf" {
+data "availability_zones" "primary" {
+  provider = aws.primary
+  state = "available"
+}
 
-  statement {
-    sid    = "AllowCloudFrontServicePrincipalReadOnly"
-    effect = "Allow"
+data "availability_zones" "secondary" {
+  provider = aws.secondary
+  state = "available"
+}
 
-    principals {
-      type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"]
-    }
+data "aws_ami" "primary" {
+  most_recent = true
+  provider = aws.primary
+  owners = ["099720109477"]
 
-    actions = [
-      "s3:GetObject",
-      "s3:ListBucket"
-    ]
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
 
-    resources = [
-      aws_s3_bucket.website.arn,
-      "${aws_s3_bucket.website.arn}/*"
-    ]
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
-    condition {
-      test     = "ArnEquals"
-      variable = "aws:SourceArn"
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
 
-      values = [
-      aws_cloudfront_distribution.s3_distribution.arn
-      ]      
-    }
+  
+}
+
+data "aws_ami" "secondary" {
+  most_recent = true
+  provider = aws.secondary
+  owners = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
   }
 }
+
+
+
+data "aws_caller_identity" "secondary" {
+  provider = aws.secondary
+}
+
+
+

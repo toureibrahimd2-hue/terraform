@@ -30,7 +30,5 @@ variable "tags" {
     project = "vpc-peering-demo"
     environment = "dev"
     terraform = "true"
-    creation_date = timestamp()
   }
 }
-
