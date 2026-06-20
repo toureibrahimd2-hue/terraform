@@ -1,1 +1,0 @@
-aws ec2 create-key-pair --key-name vpc-peering-demo-west --region eu-west-3 --query 'KeyMaterial' --output text > vpc-peering-demo-west.pem
