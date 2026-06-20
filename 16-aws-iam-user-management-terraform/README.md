@@ -1,5 +1,5 @@
 # Day 16: AWS IAM User Management with Terraform
-![Architecture](16-aws-iam-user-management-terraform/images/architecture.png)
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/16-aws-iam-user-management-terraform/images/architecture.png?raw=true)
 
 ## Overview
 This demo demonstrates how to manage AWS IAM users, groups, and group memberships using Terraform and a CSV file as the data source. It's an AWS equivalent of Azure AD user management.
