@@ -99,6 +99,11 @@ resource "aws_elastic_beanstalk_environment" "green" {
     value     = "HTTP"
   }
 
+setting {
+  namespace = "aws:elasticbeanstalk:application:environment"
+  name      = "STATUS"
+  value     = "production"    # ← Green est maintenant prod
+}
   # Environment Variables
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
@@ -109,7 +114,7 @@ resource "aws_elastic_beanstalk_environment" "green" {
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"
     name      = "VERSION"
-    value     = "2.0"
+    value     = "4.0"
   }
 
   # Deployment Policy

@@ -98,6 +98,12 @@ resource "aws_elastic_beanstalk_environment" "blue" {
     value     = "HTTP"
   }
 
+  setting {
+  namespace = "aws:elasticbeanstalk:application:environment"
+  name      = "STATUS"
+  value     = "staging"       # ← Blue est maintenant staging
+}
+
   # Environment Variables
   setting {
     namespace = "aws:elasticbeanstalk:application:environment"

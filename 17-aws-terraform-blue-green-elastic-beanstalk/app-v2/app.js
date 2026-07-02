@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+// Read from environment variables (set by Terraform)
+const ENVIRONMENT = process.env.ENVIRONMENT || 'unknown';
+const VERSION     = process.env.VERSION     || '0.0';
+const STATUS      = process.env.STATUS      || 'staging';
+
 // Middleware to log requests
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
@@ -12,19 +17,29 @@ app.use((req, res, next) => {
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',
-    version: '2.0',
-    environment: 'green',
+    version: VERSION,
+    environment: ENVIRONMENT,
+    deploymentStatus: STATUS,
     timestamp: new Date().toISOString()
   });
 });
 
 // Main route
 app.get('/', (req, res) => {
+  const isProduction = STATUS.toLowerCase() === 'production';
+  const envEmoji     = ENVIRONMENT.toLowerCase() === 'green' ? '🟢' : '🔵';
+  const badgeColor   = isProduction ? '#4CAF50' : '#FF9800';
+  const bgGradient   = ENVIRONMENT.toLowerCase() === 'green'
+    ? 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+    : 'linear-gradient(135deg, #1a73e8 0%, #74b9ff 100%)';
+  const accentColor  = ENVIRONMENT.toLowerCase() === 'green' ? '#11998e' : '#1a73e8';
+  const versionColor = ENVIRONMENT.toLowerCase() === 'green' ? '#38ef7d' : '#74b9ff';
+
   res.send(`
     <!DOCTYPE html>
     <html>
     <head>
-      <title>Version 2.0 - Green Environment</title>
+      <title>Version ${VERSION} - ${ENVIRONMENT.toUpperCase()} Environment</title>
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -34,7 +49,7 @@ app.get('/', (req, res) => {
           justify-content: center;
           align-items: center;
           min-height: 100vh;
-          background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+          background: ${bgGradient};
         }
         .container {
           text-align: center;
@@ -44,19 +59,10 @@ app.get('/', (req, res) => {
           box-shadow: 0 20px 60px rgba(0,0,0,0.3);
           max-width: 600px;
         }
-        h1 {
-          color: #11998e;
-          font-size: 2.5em;
-          margin-bottom: 20px;
-        }
-        .version {
-          color: #38ef7d;
-          font-size: 3em;
-          font-weight: bold;
-          margin: 20px 0;
-        }
+        h1 { color: ${accentColor}; font-size: 2.5em; margin-bottom: 20px; }
+        .version { color: ${versionColor}; font-size: 3em; font-weight: bold; margin: 20px 0; }
         .environment {
-          background: #11998e;
+          background: ${accentColor};
           color: white;
           padding: 15px 30px;
           border-radius: 50px;
@@ -64,14 +70,10 @@ app.get('/', (req, res) => {
           font-size: 1.2em;
           margin: 20px 0;
         }
-        .info {
-          color: #666;
-          margin-top: 30px;
-          line-height: 1.8;
-        }
+        .info { color: #666; margin-top: 30px; line-height: 1.8; }
         .badge {
           display: inline-block;
-          background: #FF9800;
+          background: ${badgeColor};
           color: white;
           padding: 5px 15px;
           border-radius: 20px;
@@ -86,28 +88,20 @@ app.get('/', (req, res) => {
           padding: 20px;
           border-radius: 10px;
         }
-        .features h3 {
-          color: #11998e;
-          margin-top: 0;
-        }
-        .features ul {
-          margin: 10px 0;
-          padding-left: 20px;
-        }
-        .features li {
-          margin: 8px 0;
-        }
+        .features h3 { color: ${accentColor}; margin-top: 0; }
+        .features ul { margin: 10px 0; padding-left: 20px; }
+        .features li { margin: 8px 0; }
       </style>
     </head>
     <body>
       <div class="container">
         <h1>🚀 Welcome to the Blue-Green Deployment Demo</h1>
-        <div class="version">Version 2.0</div>
-        <div class="environment">🟢 GREEN ENVIRONMENT</div>
+        <div class="version">Version ${VERSION}</div>
+        <div class="environment">${envEmoji} ${ENVIRONMENT.toUpperCase()} ENVIRONMENT</div>
         <div class="info">
-          <p><strong>Status:</strong> <span class="badge">STAGING</span></p>
-          <p>This is the staging environment running the new Version 2.0 with exciting features!</p>
-          
+          <p><strong>Status:</strong> <span class="badge">${STATUS.toUpperCase()}</span></p>
+          <p>This is the <strong>${STATUS}</strong> environment running Version ${VERSION}.</p>
+
           <div class="features">
             <h3>✨ What's New in v2.0:</h3>
             <ul>
@@ -118,7 +112,7 @@ app.get('/', (req, res) => {
               <li>🐛 Critical bug fixes</li>
             </ul>
           </div>
-          
+
           <p><strong>Server Time:</strong> ${new Date().toISOString()}</p>
           <p><strong>Hostname:</strong> ${require('os').hostname()}</p>
         </div>
@@ -131,9 +125,9 @@ app.get('/', (req, res) => {
 // API endpoint
 app.get('/api/info', (req, res) => {
   res.json({
-    version: '2.0',
-    environment: 'green',
-    status: 'staging',
+    version: VERSION,
+    environment: ENVIRONMENT,
+    status: STATUS,
     timestamp: new Date().toISOString(),
     hostname: require('os').hostname(),
     platform: process.platform,
@@ -151,7 +145,7 @@ app.get('/api/info', (req, res) => {
 // New feature endpoint (only in v2.0)
 app.get('/api/features', (req, res) => {
   res.json({
-    version: '2.0',
+    version: VERSION,
     newFeatures: [
       {
         name: 'Modern UI',
@@ -174,7 +168,7 @@ app.get('/api/features', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`✅ Application v2.0 (Green Environment) is running on port ${PORT}`);
+  console.log(`✅ Application v${VERSION} (${ENVIRONMENT} - ${STATUS}) is running on port ${PORT}`);
   console.log(`🌐 Server started at ${new Date().toISOString()}`);
 });
 
