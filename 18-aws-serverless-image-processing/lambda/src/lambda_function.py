@@ -2,7 +2,7 @@ import json
 import boto3
 import os
 import logging
-from urllib.parse import unquote_plus
+from urllib.parse import unquote_plus, quote
 from io import BytesIO
 from PIL import Image
 import uuid
@@ -56,7 +56,8 @@ def lambda_handler(event, context):
                     Body=output_data,
                     ContentType=content_type,
                     Metadata={
-                        'original-key': key,
+                        # ✅ FIX : encodage ASCII-safe, S3 n'accepte pas les accents/caractères spéciaux
+                        'original-key': quote(key),
                         'processed-by': 'lambda-image-processor'
                     }
                 )
