@@ -143,9 +143,12 @@ resource "aws_lambda_layer_version" "pillow_layer" {
 # PACKAGING DU CODE LAMBDA
 # ============================================================================
 
+
+
+
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambda/src"
+  source_file  = "${path.module}/../lambda/src/lambda_function.py"
   output_path = "${path.module}/../lambda/build/lambda_function.zip"
 }
 
