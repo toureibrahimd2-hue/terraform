@@ -2,6 +2,8 @@
 
 A simplified serverless image processing pipeline that automatically processes images uploaded to S3.
 
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/18-aws-serverless-image-processing/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-07%2010-57-08.png)
+
 ## 🎯 Architecture
 
 ```
