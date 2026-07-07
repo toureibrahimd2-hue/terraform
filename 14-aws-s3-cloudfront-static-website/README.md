@@ -1,4 +1,5 @@
 # Day 14: Static Website Hosting (Mini Project 1)
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/14-aws-s3-cloudfront-static-website/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-07%2011-13-19.png)
 
 ## 🎯 Project Overview
 

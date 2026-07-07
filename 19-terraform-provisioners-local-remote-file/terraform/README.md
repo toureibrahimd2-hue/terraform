@@ -1,4 +1,5 @@
 # Terraform Provisioners Demo
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/19-terraform-provisioners-local-remote-file/terraform/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-07%2011-16-11.png)
 
 ## 📚 What Are Provisioners?
 

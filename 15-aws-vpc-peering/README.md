@@ -1,4 +1,5 @@
 # Day 15: VPC and Peering (Mini Project 2)
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/15-aws-vpc-peering/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-07%2011-12-04.png)
 
 ## Overview
 This demo showcases **AWS VPC Peering** by creating two VPCs in different AWS regions and establishing a peering connection between them. This allows resources in both VPCs to communicate with each other using private IP addresses.
