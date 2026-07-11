@@ -52,6 +52,39 @@ module "iam" {
   }
 }
 
+# Custom Secrets Manager Module
+module "secrets-manager" {
+  source = "./modules/secrets-manager"
+
+  name_prefix = var.cluster_name
+
+  # Database credentials
+  create_db_secret = var.enable_db_secret
+  db_username       = var.db_username
+  db_password       = var.db_password
+  db_engine         = var.db_engine
+  db_host           = var.db_host
+  db_port           = var.db_port
+  db_name           = var.db_name
+
+  # API keys
+  create_api_secret = var.enable_api_secret
+  api_key            = var.api_key
+  api_secret         = var.api_secret
+
+  # Application config
+  create_app_config_secret = var.enable_app_config_secret
+  app_config                = var.app_config
+
+  tags = {
+    Environment = var.environment
+    Terraform   = "true"
+    Project     = "EKS-Day20"
+  }
+
+  depends_on = [module.eks]
+}
+
 # Custom EKS Module
 module "eks" {
   source = "./modules/eks"

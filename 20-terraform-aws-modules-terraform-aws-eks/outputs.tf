@@ -87,22 +87,22 @@ output "kms_key_arn" {
 # Secrets Manager Outputs (if enabled)
 output "secrets_kms_key_arn" {
   description = "KMS key ARN used for secrets encryption"
-  value       = var.enable_db_secret || var.enable_api_secret || var.enable_app_config_secret ? module.secrets_manager.kms_key_arn : ""
+  value       = var.enable_db_secret || var.enable_api_secret || var.enable_app_config_secret ? module.secrets-manager.kms_key_arn : ""
 }
 
 output "db_secret_arn" {
   description = "ARN of the database credentials secret"
-  value       = var.enable_db_secret ? module.secrets_manager.db_secret_arn : ""
+  value       = var.enable_db_secret ? module.secrets-manager.db_secret_arn : ""
 }
 
 output "api_secret_arn" {
   description = "ARN of the API keys secret"
-  value       = var.enable_api_secret ? module.secrets_manager.api_secret_arn : ""
+  value       = var.enable_api_secret ? module.secrets-manager.api_secret_arn : ""
 }
 
 output "app_config_secret_arn" {
   description = "ARN of the application config secret"
-  value       = var.enable_app_config_secret ? module.secrets_manager.app_config_secret_arn : ""
+  value       = var.enable_app_config_secret ? module.secrets-manager.app_config_secret_arn : ""
 }
 
 # Convenience Outputs

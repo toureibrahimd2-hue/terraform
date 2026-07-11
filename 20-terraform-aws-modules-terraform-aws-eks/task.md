@@ -10,7 +10,7 @@
   - Add screenshots of deployment and kubectl commands
   - Document EKS architecture and cost considerations
   - Embed the video
-- [ ] Share your blog on LinkedIn and Twitter/X with **#30daysofawsterraform**
+- [ ] Share your blog on LinkedIn and Twitter/X 
 - [ ] Tag me (Piyush Sachdeva)
 - [ ] Submit your work (by creating an issue in this repo)
 
