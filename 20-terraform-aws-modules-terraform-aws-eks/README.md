@@ -4,6 +4,8 @@ This configuration creates a production-ready Amazon EKS (Elastic Kubernetes Ser
 
 ## Architecture
 
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/20-terraform-aws-modules-terraform-aws-eks/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-11%2022-41-05.png)
+
 The setup includes:
 - **VPC**: Custom VPC with public and private subnets across 3 availability zones
 - **EKS Cluster**: Managed Kubernetes cluster with version 1.31
