@@ -13,7 +13,7 @@
   - Document advantages of Blue-Green deployment
   - Embed the video
 
-- [ ] Tag me (Piyush Sachdeva)
+
 - [ ] Submit your work (by creating an issue in this repo)
 
 ## Tips

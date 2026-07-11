@@ -10,7 +10,7 @@
   - Document challenges and solutions
   - Embed the video
 
-- [ ] Tag me (Piyush Sachdeva)
+
 - [ ] Submit your work (by creating an issue in this repo)
 
 ## Tips

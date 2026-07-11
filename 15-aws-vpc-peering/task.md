@@ -11,7 +11,7 @@
   - Document cross-region deployment challenges
   - Embed the video
 
-- [ ] Tag me (Piyush Sachdeva)
+
 - [ ] Submit your work (by creating an issue in this repo)
 
 ## Tips

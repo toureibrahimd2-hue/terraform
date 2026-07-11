@@ -11,7 +11,7 @@
   - Document when to use each provisioner type
   - Embed the video
 
-- [ ] Tag me (Piyush Sachdeva)
+
 - [ ] Submit your work (by creating an issue in this repo)
 
 ## Tips
