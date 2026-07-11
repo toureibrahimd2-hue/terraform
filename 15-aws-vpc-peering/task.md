@@ -10,7 +10,7 @@
   - Add screenshots of deployment and connectivity testing
   - Document cross-region deployment challenges
   - Embed the video
-- [ ] Share your blog on LinkedIn and Twitter/X with **#30daysofawsterraform**
+
 - [ ] Tag me (Piyush Sachdeva)
 - [ ] Submit your work (by creating an issue in this repo)
 

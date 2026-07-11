@@ -10,7 +10,7 @@
   - Add screenshots of deployment and processed images
   - Document Lambda layers and serverless architecture
   - Embed the video
-- [ ] Share your blog on LinkedIn and Twitter/X with **#30daysofawsterraform**
+
 - [ ] Tag me (Piyush Sachdeva)
 - [ ] Submit your work (by creating an issue in this repo)
 

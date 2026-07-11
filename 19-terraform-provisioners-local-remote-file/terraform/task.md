@@ -10,7 +10,7 @@
   - Add screenshots of your code and nginx running
   - Document when to use each provisioner type
   - Embed the video
-- [ ] Share your blog on LinkedIn and Twitter/X with **#30daysofawsterraform**
+
 - [ ] Tag me (Piyush Sachdeva)
 - [ ] Submit your work (by creating an issue in this repo)
 

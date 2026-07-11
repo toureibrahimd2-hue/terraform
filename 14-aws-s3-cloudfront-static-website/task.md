@@ -9,7 +9,7 @@
   - Add screenshots of your deployment and the live website
   - Document challenges and solutions
   - Embed the video
-- [ ] Share your blog on LinkedIn and Twitter/X with **#30daysofawsterraform**
+
 - [ ] Tag me (Piyush Sachdeva)
 - [ ] Submit your work (by creating an issue in this repo)
 
