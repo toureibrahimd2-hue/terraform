@@ -2,6 +2,8 @@
 
 This project demonstrates how to implement **AWS Policy Creation** and **Governance Setup** using Terraform. It showcases best practices for cloud security, compliance monitoring, and automated policy enforcement.
 
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/21-aws-policy-governance-terraform/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-12%2018-00-04.png)
+
 ## 🎯 Project Objectives
 
 1. **Policy Creation**: Implement IAM policies to enforce security best practices
