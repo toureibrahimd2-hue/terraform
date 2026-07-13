@@ -30,3 +30,6 @@ Thumbs.db
 # Sensitive data
 *.pem
 *.key
+*.tfvars
+!*.tfvars.example
+terraform.tfvars

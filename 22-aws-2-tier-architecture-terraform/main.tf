@@ -72,6 +72,7 @@ module "ec2" {
   web_security_group_id = module.security_groups.web_sg_id
   db_host               = module.rds.db_endpoint
   db_username           = var.db_username
-  db_password           = module.secrets.db_password
   db_name               = var.db_name
+  db_secret_arn         = module.secrets.secret_arn
+  aws_region            = var.aws_region
 }

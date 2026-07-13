@@ -37,10 +37,14 @@ variable "db_username" {
   sensitive   = true
 }
 
-variable "db_password" {
-  description = "Database password"
+variable "db_secret_arn" {
+  description = "ARN of the database secret in Secrets Manager"
   type        = string
-  sensitive   = true
+}
+
+variable "aws_region" {
+  description = "AWS region where resources are deployed"
+  type        = string
 }
 
 variable "db_name" {

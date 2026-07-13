@@ -14,7 +14,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install flask mysql-connector-python
+pip install flask mysql-connector-python boto3
 
 # Create Flask application
 cat > app.py << 'APPEOF'
@@ -22,16 +22,45 @@ from flask import Flask, request, redirect, url_for
 import mysql.connector
 import time
 import os
+import boto3
+import json
 
 app = Flask(__name__)
 
-# Database configuration
-DB_CONFIG = {
-    "host": "${db_host}",
-    "user": "${db_username}",
-    "password": "${db_password}",
-    "database": "${db_name}"
-}
+# Database configuration (Retrieved dynamically from AWS Secrets Manager)
+def get_db_credentials():
+    secret_arn = "${db_secret_arn}"
+    region_name = "${aws_region}"
+
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        response = client.get_secret_value(SecretId=secret_arn)
+        return json.loads(response['SecretString'])
+    except Exception as e:
+        print(f"Error retrieving secret: {e}")
+        raise e
+
+try:
+    credentials = get_db_credentials()
+    DB_CONFIG = {
+        "host": "${db_host}",
+        "user": credentials.get("username", "${db_username}"),
+        "password": credentials.get("password"),
+        "database": "${db_name}"
+    }
+except Exception as e:
+    DB_CONFIG = {
+        "host": "${db_host}",
+        "user": "${db_username}",
+        "password": "",
+        "database": "${db_name}"
+    }
+    print(f"Failed to fetch secrets: {e}")
 
 def get_db_connection():
     """Establish database connection with retry logic"""
