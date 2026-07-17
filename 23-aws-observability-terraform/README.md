@@ -4,6 +4,8 @@ This project sets up a comprehensive monitoring stack for an S3 bucket using Clo
 
 ## Architecture
 
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/23-aws-observability-terraform/image/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-17%2022-43-35.png)
+
 1.  **S3 Bucket**: A monitored bucket is created (with a random suffix).
 2.  **CloudTrail**: Logs data events (object-level activity) for the bucket.
 3.  **CloudWatch Logs**: Receives the CloudTrail logs.
