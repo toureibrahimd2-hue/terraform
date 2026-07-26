@@ -4,6 +4,8 @@
 
 Production-grade, highly available Django application deployed on AWS using Terraform. Infrastructure spans multiple Availability Zones with automatic scaling.
 
+![Architecture](https://github.com/toureibrahimd2-hue/terraform/blob/main/24-aws-terraform-ha-scalable-architecture/images/Capture%20d%E2%80%99%C3%A9cran%20du%202026-07-26%2021-37-08.png)
+
 ### 🎯 Key Features
 
 - **High Availability**: Multi-AZ deployment, no single point of failure
