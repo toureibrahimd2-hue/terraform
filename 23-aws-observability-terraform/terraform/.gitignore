@@ -33,3 +33,9 @@ Thumbs.db
 *.tfvars
 !*.tfvars.example
 terraform.tfvars
+
+
+# Lambda build artifacts (générés, pas à committer)
+lambda/layer/*.zip
+lambda/build/
+lambda_function.zip
