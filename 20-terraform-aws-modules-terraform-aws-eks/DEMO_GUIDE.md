@@ -1049,6 +1049,6 @@ This knowledge is directly applicable to real-world production environments!
 
 **Project:** EKS Custom Modules Demo  
 **Version:** 1.0  
-**Last Updated:** November 28, 2025  
+**Last Updated:** Jully 26, 2026  
 **Terraform Version:** >= 1.3  
 **Kubernetes Version:** 1.31
